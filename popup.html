@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attachment Tray</title>
+  <style>
+    body {
+      width: 300px;
+      height: 400px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .drop-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 1rem;
+      transition: all 0.2s;
+    }
+
+    .drop-zone.drag-over {
+      border-color: #2563eb;
+      background-color: #eff6ff;
+      color: #2563eb;
+    }
+
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Drag overlay for body */
+    body.drag-over {
+      background-color: #eff6ff;
+      outline: 2px dashed #2563eb;
+      outline-offset: -4px;
+    }
+
+    body.drag-over::after {
+      content: 'Drop files here';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      color: #2563eb;
+      font-weight: bold;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Attachment Tray</h1>
+  <p style="margin-bottom: 1rem; color: #6b7280; font-size: 0.875rem;">Drag & drop files anywhere to save them.</p>
+  <div id="fileList" class="file-list"></div>
+  <button id="clearBtn" style="margin-top: 1rem; width: 100%; background-color: #ef4444;">Clear All</button>
+  <script type="module" src="/src/popup.ts"></script>
+</body>
+
+</html>
