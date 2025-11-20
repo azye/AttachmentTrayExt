@@ -7,22 +7,32 @@
   <title>Attachment Tray</title>
   <style>
     body {
-      width: 300px;
-      height: 400px;
+      width: 350px;
+      height: 500px;
       padding: 16px;
       font-family: system-ui, -apple-system, sans-serif;
       margin: 0;
       background-color: #f9fafb;
       color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
     }
 
     h1 {
       font-size: 1.25rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       color: #111827;
+      flex-shrink: 0;
     }
 
-    button {
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+
+    button.primary-btn {
       background-color: #2563eb;
       color: white;
       border: none;
@@ -30,35 +40,87 @@
       border-radius: 4px;
       cursor: pointer;
       font-weight: 500;
+      width: 100%;
     }
 
-    button:hover {
+    button.primary-btn:hover {
       background-color: #1d4ed8;
-    }
-
-    .drop-zone {
-      border: 2px dashed #cbd5e1;
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 1rem;
-      transition: all 0.2s;
-    }
-
-    .drop-zone.drag-over {
-      border-color: #2563eb;
-      background-color: #eff6ff;
-      color: #2563eb;
     }
 
     .file-list {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      max-height: 300px;
       overflow-y: auto;
       flex: 1;
+      min-height: 0;
+      padding-right: 4px;
+      /* Space for scrollbar */
+    }
+
+    .file-item {
+      background: white;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .file-icon {
+      width: 24px;
+      height: 24px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #6b7280;
+    }
+
+    .file-info {
+      flex: 1;
+      min-width: 0;
+      /* Enable text truncation */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .file-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .file-date {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .delete-btn {
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .delete-btn:hover {
+      background-color: #fee2e2;
+      color: #ef4444;
     }
 
     /* Drag overlay for body */
@@ -86,7 +148,7 @@
   <h1>Attachment Tray</h1>
   <p style="margin-bottom: 1rem; color: #6b7280; font-size: 0.875rem;">Drag & drop files anywhere to save them.</p>
   <div id="fileList" class="file-list"></div>
-  <button id="clearBtn" style="margin-top: 1rem; width: 100%; background-color: #ef4444;">Clear All</button>
+  <button id="clearBtn" class="primary-btn" style="margin-top: 1rem;">Clear All</button>
   <script type="module" src="/src/popup.ts"></script>
 </body>
 

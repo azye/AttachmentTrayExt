@@ -145,16 +145,16 @@ function renderFiles(files: StoredFile[]) {
     // Simple icon based on type
     const isImage = file.type.startsWith('image/');
     const icon = isImage
-      ? `<img src="${file.data}" style="width: 20px; height: 20px; object-fit: cover; border-radius: 4px;">`
-      : `<div class="file-icon"></div>`;
+      ? `<img src="${file.data}" class="file-icon" style="object-fit: cover;">`
+      : `<div class="file-icon">📄</div>`;
 
     div.innerHTML = `
       ${icon}
-      <div style="flex: 1; overflow: hidden;">
-        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500;">${file.name}</div>
-        <div style="font-size: 0.75rem; color: #6b7280;">${new Date(file.timestamp).toLocaleDateString()}</div>
+      <div class="file-info">
+        <div class="file-name" title="${file.name}">${file.name}</div>
+        <div class="file-date">${new Date(file.timestamp).toLocaleDateString()}</div>
       </div>
-      <button class="delete-btn" data-id="${file.id}" style="background: none; color: #ef4444; padding: 4px;">✕</button>
+      <button class="delete-btn" data-id="${file.id}" title="Delete">✕</button>
     `;
 
     fileList.appendChild(div);
