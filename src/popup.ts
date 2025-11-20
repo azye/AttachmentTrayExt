@@ -7,7 +7,6 @@ interface StoredFile {
 }
 
 const fileList = document.getElementById('fileList');
-const clearBtn = document.getElementById('clearBtn');
 
 // Load and display files on startup
 document.addEventListener('DOMContentLoaded', loadFiles);
@@ -41,13 +40,6 @@ const storage = {
     }
   }
 };
-
-if (clearBtn) {
-  clearBtn.addEventListener('click', async () => {
-    await storage.clear();
-    renderFiles([]);
-  });
-}
 
 // Prevent default drag behaviors on the whole document
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
